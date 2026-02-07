@@ -141,9 +141,9 @@ Tune_Buddy_KMB_projekt_2526/
 ## 🎯 Matching Algoritam
 
 Scoring sistem (0-100 bodova):
-- **Zajednički žanrovi**: 10 bodova po žanru (max 40)
-- **Zajednički izvođači**: 10 bodova po izvođaču (max 40)
-- **Ista lokacija**: 20 bodova bonus
+- **Ista lokacija**: 50 bodova bonus (prioritet za isti grad)
+- **Zajednički žanrovi**: 8 bodova po žanru (max ~30)
+- **Zajednički izvođači**: 8 bodova po izvođaču (max ~30)
 
 ## 📊 Demo podaci
 
