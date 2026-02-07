@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.btn {
+  @apply inline-flex items-center gap-2 rounded-full px-4 py-2 font-semibold transition transform hover:-translate-y-0.5 hover:shadow-lg;
+}
+
+.card {
+  @apply rounded-2xl bg-slate-900/60 border border-slate-800 shadow-xl;
+}
+
+/* Mobile responsive utilities */
+@media (max-width: 640px) {
+  .btn {
+    @apply px-3 py-1.5 text-sm;
+  }
+  
+  .card {
+    @apply rounded-xl;
+  }
+}
+
+/* Mobile header title - hide center title on very small screens */
+@media (max-width: 480px) {
+  .mobile-hide-title {
+    display: none;
+  }
+}
+
+/* Slideshow styles */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .slideshow-container {
+    height: 250px;
+    border-radius: 1rem;
+  }
+}
+
+.slideshow-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
+
+.slideshow-slide.active {
+  opacity: 1;
+}
+
+.slideshow-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(15, 23, 42, 0.9));
+  padding: 2rem;
+}
+
+@media (max-width: 640px) {
+  .slideshow-overlay {
+    padding: 1rem;
+  }
+}
+
+/* Mobile-friendly scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}

@@ -1,0 +1,140 @@
+import { useEffect, useState } from 'react';
+import Landing from './pages/Landing';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import Chat from './pages/Chat';
+import type { UserProfile } from './types';
+
+export default function App() {
+  const [page, setPage] = useState<'landing' | 'login' | 'register' | 'dashboard' | 'profile' | 'chat'>('landing');
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    if (token) {
+      loadUser();
+    }
+  }, [token]);
+
+  const loadUser = async () => {
+    try {
+      const res = await fetch('/api/me', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const userData = await res.json();
+        setUser(userData);
+        setPage('dashboard');
+      } else {
+        localStorage.removeItem('token');
+        setToken(null);
+        setPage('landing');
+      }
+    } catch (err) {
+      console.error('Error loading user', err);
+    }
+  };
+
+  const handleRegister = async (data: any) => {
+    setIsLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        const { token: newToken, user: userData } = await res.json();
+        localStorage.setItem('token', newToken);
+        setToken(newToken);
+        setUser(userData);
+        setPage('dashboard');
+      } else {
+        const errorData = await res.json();
+        setError(errorData.error || 'Greška pri registraciji');
+      }
+    } catch (err: any) {
+      setError(err.message || 'Greška pri registraciji');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleLogin = async (email: string, password: string) => {
+    setIsLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      if (res.ok) {
+        const { token: newToken, user: userData } = await res.json();
+        localStorage.setItem('token', newToken);
+        setToken(newToken);
+        setUser(userData);
+        setPage('dashboard');
+      } else {
+        const errorData = await res.json();
+        setError(errorData.error || 'Neispravni e-mail ili lozinka');
+      }
+    } catch (err: any) {
+      setError(err.message || 'Greška pri prijavi');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+    setUser(null);
+    setPage('landing');
+  };
+
+  const handleNavigate = (newPage: 'landing' | 'login' | 'register' | 'dashboard' | 'profile' | 'chat') => {
+    setPage(newPage);
+    setError('');
+  };
+
+  return (
+    <>
+      {page === 'landing' && <Landing onNavigate={handleNavigate} />}
+      {page === 'register' && <Register onNavigate={handleNavigate} onRegister={handleRegister} isLoading={isLoading} />}
+      {page === 'login' && (
+        <Login 
+          onNavigate={handleNavigate} 
+          onLogin={handleLogin} 
+          isLoading={isLoading}
+        />
+      )}
+      {page === 'dashboard' && user && (
+        <Dashboard 
+          user={user} 
+          onLogout={handleLogout}
+          onNavigateProfile={() => handleNavigate('profile')}
+          onNavigateChat={() => handleNavigate('chat')}
+        />
+      )}
+      {page === 'profile' && user && (
+        <Profile 
+          user={user} 
+          onLogout={handleLogout}
+          onBack={() => handleNavigate('dashboard')}
+        />
+      )}
+      {page === 'chat' && user && (
+        <Chat 
+          user={user}
+          onBack={() => handleNavigate('dashboard')}
+        />
+      )}
+    </>
+  );
+}
