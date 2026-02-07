@@ -62,7 +62,7 @@ npm run dev
 ```
 
 Ova komanda pokreće oba servera istovremeno:
-- **Frontend**: http://localhost:5175
+- **Frontend**: http://localhost:5173
 - **Backend**: http://localhost:4000
 
 ### 4. Build za produkciju
