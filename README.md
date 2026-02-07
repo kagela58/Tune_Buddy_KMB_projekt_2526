@@ -1,4 +1,4 @@
-# 🎵 TuneBuddy - Muzička socijalna mreža
+# 🎵 TuneBuddy - Glazbena društvena mreža
 
 TuneBuddy je full-stack aplikacija za povezivanje ljubitelja glazbe, organizaciju odlaska na koncerte i chat s matchanim korisnicima.
 
@@ -137,15 +137,6 @@ Tune_Buddy_KMB_projekt_2526/
 
 ### Recommendations
 - `GET /api/artists/recommended` - Preporuke izvođača (auth required)
-
-## 🤖 AI Chat Sistem
-
-TuneBuddy koristi pattern-matching AI za generiranje odgovora u chatu:
-- Prepoznaje **pozdrave** (bok, hej, zdravo)
-- Reagira na **glazbene teme** (koncert, festival, glazba)
-- Odgovara na **pozive na kavu/meetup**
-- Odgovara na **pitanja** (omiljeni, voliš, što)
-- Generira raznolike odgovore za bolju interakciju
 
 ## 🎯 Matching Algoritam
 
