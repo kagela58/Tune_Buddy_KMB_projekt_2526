@@ -181,11 +181,10 @@ export function seedEvents() {
    
   ];
 
-  // Always delete and reseed
-  try {
-    db.exec('DELETE FROM events;');
-  } catch (err) {
-    console.log('Events table creation will happen via initDb');
+  // Only seed if no events exist - this preserves wishlist data
+  if (existing > 0) {
+    console.log(`ℹ️ Events already exist (${existing} events), skipping seed to preserve favorites`);
+    return;
   }
 
   try {
