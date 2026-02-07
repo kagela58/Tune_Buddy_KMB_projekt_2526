@@ -2,6 +2,13 @@
 
 TuneBuddy je full-stack aplikacija za povezivanje ljubitelja glazbe, organizaciju odlaska na koncerte i chat s matchanim korisnicima.
 
+## 👥 Team Information
+
+- **Karmen Grubić** - GitHub: [@kagela58](https://github.com/kagela58)
+- **Matea Begonja** - GitHub: [@mbegonja](https://github.com/mbegonja)
+- **Barbara Jezidžić** - GitHub: [@barbjez](https://github.com/barbjez)
+- **Team Name**: KMB
+
 ## ✨ Značajke
 
 ### 🎯 Osnovne funkcionalnosti
@@ -76,29 +83,47 @@ npm run build
 Tune_Buddy_KMB_projekt_2526/
 ├── client/                    # React frontend
 │   ├── src/
+│   │   ├── api/              # API klijent
+│   │   │   └── client.ts
+│   │   ├── components/       # React komponente
+│   │   │   ├── NotificationBell.tsx
+│   │   │   └── SideMenu.tsx
+│   │   ├── data/             # Mock podaci
+│   │   │   └── mock.ts
+│   │   ├── hooks/            # Custom hooks
+│   │   │   └── useNotifications.ts
+│   │   ├── i18n/             # Internacionalizacija
+│   │   │   ├── LanguageContext.tsx
+│   │   │   ├── LanguageSelector.tsx
+│   │   │   └── translations.ts
 │   │   ├── pages/            # Page komponente
+│   │   │   ├── Chat.tsx      # Chat s matchevima
+│   │   │   ├── Dashboard.tsx # Glavni dashboard
+│   │   │   ├── Events.tsx    # Pregled događaja
+│   │   │   ├── Favorites.tsx # Omiljeni događaji
 │   │   │   ├── Landing.tsx   # Početna stranica
-│   │   │   ├── Register.tsx  # Registracija
 │   │   │   ├── Login.tsx     # Prijava
-│   │   │   ├── Dashboard.tsx # Glavni dashboard s eventima
 │   │   │   ├── Profile.tsx   # Profil korisnika
-│   │   │   └── Chat.tsx      # Chat s matchevima
+│   │   │   └── Register.tsx  # Registracija
+│   │   ├── utils/            # Pomoćne funkcije
+│   │   │   └── helpers.ts
 │   │   ├── App.tsx           # Glavni app router
-│   │   ├── types.ts          # TypeScript types
-│   │   └── main.tsx          # Entry point
-│   ├── public/
+│   │   ├── index.css         # Glavni CSS
+│   │   ├── main.tsx          # Entry point
+│   │   └── types.ts          # TypeScript types
+│   ├── index.html
 │   └── package.json
 │
 ├── server/                    # Express backend
 │   ├── src/
-│   │   ├── db.ts             # Database inicijalizacija
 │   │   ├── auth.ts           # Auth funkcije
-│   │   ├── events.ts         # Events management
 │   │   ├── chat.ts           # Chat sistem s AI
+│   │   ├── db.ts             # Database inicijalizacija
+│   │   ├── events.ts         # Events management
+│   │   ├── index.ts          # Express server
 │   │   ├── recommendations.ts # Matching i preporuke
-│   │   └── index.ts          # Express server
+│   │   └── types.ts          # TypeScript types
 │   ├── uploads/              # Uploaded slike
-│   ├── tunebuddy.db          # SQLite baza (generira se automatski)
 │   └── package.json
 │
 ├── package.json              # Root package (workspaces)
@@ -149,14 +174,14 @@ Scoring sistem (0-100 bodova):
 
 Aplikacija dolazi s:
 - **100+ događaja** diljem Hrvatske
-- **Razni žanrovi**: Electronic, Indie, Rock, Pop, Classical, Jazz, Hip-Hop, Metal, Funk
-- **Poznati izvođači**: ARTBAT, Arctic Monkeys, Dua Lipa, Kendrick Lamar, Radiohead
-- **Linkovi na kartice**: entrio.hr, adriaticket.com, eventim.hr
+- **Razni žanrovi**: Electronic, Indie, Rock, Pop, Classical, Jazz, Hip-Hop, Metal, Funk, R&B, Folk, Turbofolk, Country, Reggae, Latino
+- **Poznati izvođači**: Arctic Monkeys, Dua Lipa, Indira Forza, MP Thompson, TBF, AC/DC, Queen, Bon Jovi...
+- **Linkovi na ulaznice**: entrio.hr, adriaticket.com, eventim.hr
 
 ## 🎨 Design
 
 - **Dark theme** - Moderan tamni dizajn
-- **Gradient akcenti** - Lagoon (teal) i Coral (narandžasta)
+- **Gradient akcenti** - Lagoon (teal) i Coral (narančasta)
 - **Responsive** - Prilagođen za desktop, tablet, mobile
 - **Tailwind CSS** - Utility-first CSS framework
 
